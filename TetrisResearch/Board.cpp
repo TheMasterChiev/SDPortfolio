@@ -49,98 +49,91 @@ Board::Board(){
 
 //How many empties has Row <numberrow>?
 int Board::vacantblocks(int row){
-  int i;
-  int amount = 0;
-  for(i=0; i<cols; i++)
-    if(field[row][i] == false)
-      amount++;
-  return amount;
+	int i;
+	int amount = 0;
+	for(i=0; i<cols; i++)
+		if(field[row][i] == false)
+			amount++;
+	return amount;
 }
 
 //Gives number of empties in highest Non-Empty Row and copies
 // this Row into therow; corresponding index being the row nr.
 // if this is -1, the whole field is empty.
 void Board::check_top_row(bool row[MAX_width], int & which_row, int & emptyblocks){
-  int i;
-  int j;
-  int amount;
-  which_row = -1;
-  emptyblocks = cols;
-  for(i=0; i<rows; i++){
-    amount = vacantblocks(i);
-    if(amount < cols){
-      for(j=0; j<cols; j++)
-        row[j] = field[i][j];
-      emptyblocks = amount;
-      which_row = i;
-      //cout << "CHECK TOP ROW: " << which_row << endl;
-    }
-  }
+	int i;
+	int j;
+	int amount;
+	which_row = -1;
+	emptyblocks = cols;
+	for(i=0; i<rows; i++){
+		amount = vacantblocks(i);
+		if(amount < cols){
+			for(j=0; j<cols; j++)
+				row[j] = field[i][j];
+			emptyblocks = amount;
+			which_row = i;
+			//cout << "CHECK TOP ROW: " << which_row << endl;
+    		}
+  	}
 }
 
-// function to clear complete field lines
-int Board::clearLines()
-{
+//Function to clear complete field Tetris lines:
+int Board::clearLines(){
 	bool full_line;
 	int cleared = 0;
-  int i;
-  int j;
-  int k;
+	int i;
+	int j;
+	int k;
 
-  for(i= (rows - 2); i>=0; i--){
-    full_line = true;
-    j = 0;
-    while(full_line && j < cols)
-      if(field[i][j] == false)
-	      full_line = false;
-      else
-        j++;
-    if(full_line){
-      //cout << "Row cleared ..." << endl;
-      cleared++;
-      for(k=i; k < rows - 1; k++)
-      	for(j=0; j < cols; j++)
-      	  field[k][j] = field[k+1][j];
-          for(j=0; j < cols; j++)
-      	   field[rows - 1][j] = false; //weird
-    }//if
-  }//for
-  /*
-
-	// traverse all rows
-	for (int i = 0; i < rows; i++)
-	{
+	for(i= (rows - 2); i>=0; i--){
+		full_line = true;
+		j = 0;
+		while(full_line && j < cols)
+			if(field[i][j] == false)
+				full_line = false;
+			else
+				j++;
+		if(full_line){
+			//cout << "Row cleared ..." << endl;
+			cleared++;
+			for(k=i; k < rows - 1; k++)
+				for(j=0; j < cols; j++)
+					field[k][j] = field[k+1][j];
+					for(j=0; j < cols; j++)
+						field[rows - 1][j] = false; //weird
+		}//if
+	}//for
+	
+	/* Previous version:
+	//Traverse all rows:
+	for(int i=0; i < rows; i++){
 		count = 0;
-		// traverse all columns of each row
-		for (int j = 0; j < cols; j++)
-		{
-			// if location is occupied increment count
+		//Traverse all columns of each row:
+		for (int j=0; j < cols; j++){
+			//If location is occupied increment count:
 			if (field[i][j])
 				count++;
 		}
 
-		// if whole row was occupied we need to clear it and shift top rows down
-		if (count == cols)
-		{
-			// traverse rows down from current complete row
-			for (int k = i; k < rows - 1; k++)
-			{
-				// copy all cols
-				for (int j = 0; j < cols; j++)
-				{
+		// If whole row was occupied we need to clear it and shift top rows down:
+		if (count == cols){
+			//Traverse rows down from current complete row:
+			for (int k=i; k < rows - 1; k++){
+				//Copy all cols:
+				for (int j=0; j < cols; j++){
 					field[k][j] = field[k + 1][j];
 				}
 			}
-			//clear top most row
-			for (int j = 0; j < cols; j++)
-			{
+			//Clear top most row:
+			for (int j=0; j < cols; j++){
 				field[rows - 1][j] = false;
 			}
 			cleared++;
 		}
 	}*/
 
-	// return number of rows cleared
+	//Return number of rows cleared:
 	return cleared;
 }
 
