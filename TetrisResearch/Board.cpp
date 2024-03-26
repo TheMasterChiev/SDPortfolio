@@ -9,8 +9,7 @@ const int n = 200;
 bool wissel_array[n];
 
 // overloaded constructor initializes field to rows x cols size
-Board::Board(int rows, int cols)
-{
+Board::Board(int rows, int cols){
 	vector<bool> row;
 
 	// set variables
@@ -20,16 +19,14 @@ Board::Board(int rows, int cols)
 	this->score_p2 = 0;
 	this->turn = 0;
 	this->pieceCount = 0;
-	// used to save orientation and position for alpha beta result
+	//Used to save orientation and position for alpha beta result:
 	this->lastPos = 0;
 	this->lastOrient = 0;
 
-	//build board field
-	for (int i = 0; i < rows + 3; i++)
-	{
+	//Build Board field:
+	for (int i = 0; i < rows + 3; i++){
 		row.clear();
-		for (int j = 0; j < cols; j++)
-		{
+		for (int j = 0; j < cols; j++){
 			row.push_back(false);
 		}
 		field.push_back(row);
@@ -37,22 +34,20 @@ Board::Board(int rows, int cols)
 }
 
 // default constructor
-Board::Board()
-{
-	// set variables
-	//NOG EVEN AANPASSEN
+Board::Board(){
+	//Set variables:
 	this->rows = 0 + 3;
 	this->cols = 0;
 	this->score_p1 = 0; 
 	this->score_p2 = 0;
 	this->turn = 0;
 	this->pieceCount = 0;
-	// used to save orientation and position for alpha beta result
+	//Used to save Orientation and Position for Alpha-Beta Result:
 	this->lastPos = 0;
 	this->lastOrient = 0;
 }
 
-// how many empties has row numberrow?
+//How many empties has Row <numberrow>?
 int Board::vacantblocks(int row){
   int i;
   int amount = 0;
@@ -62,9 +57,9 @@ int Board::vacantblocks(int row){
   return amount;
 }
 
-// gives number of empties in heighest non-empty row,
-// and copies this row into therow; its row index being numberrow
-// if this is -1, the whole field is empty
+//Gives number of empties in highest Non-Empty Row and copies
+// this Row into therow; corresponding index being the row nr.
+// if this is -1, the whole field is empty.
 void Board::check_top_row(bool row[MAX_width], int & which_row, int & emptyblocks){
   int i;
   int j;
