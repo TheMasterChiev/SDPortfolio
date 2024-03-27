@@ -51,7 +51,7 @@ Board::Board(){
 int Board::vacantblocks(int row){
 	int i;
 	int amount = 0;
-	for(i=0; i<cols; i++)
+	for(i = 0; i < cols; i++)
 		if(field[row][i] == false)
 			amount++;
 	return amount;
@@ -66,10 +66,10 @@ void Board::check_top_row(bool row[MAX_width], int & which_row, int & emptyblock
 	int amount;
 	which_row = -1;
 	emptyblocks = cols;
-	for(i=0; i<rows; i++){
+	for(i = 0; i < rows; i++){
 		amount = vacantblocks(i);
 		if(amount < cols){
-			for(j=0; j<cols; j++)
+			for(j = 0; j < cols; j++)
 				row[j] = field[i][j];
 			emptyblocks = amount;
 			which_row = i;
@@ -86,7 +86,7 @@ int Board::clearLines(){
 	int j;
 	int k;
 
-	for(i= (rows - 2); i>=0; i--){
+	for(i = (rows - 2); i >= 0; i--){
 		full_line = true;
 		j = 0;
 		while(full_line && j < cols)
@@ -97,20 +97,20 @@ int Board::clearLines(){
 		if(full_line){
 			//cout << "Row cleared ..." << endl;
 			cleared++;
-			for(k=i; k < rows - 1; k++)
-				for(j=0; j < cols; j++)
+			for(k = i; k < rows - 1; k++)
+				for(j = 0; j < cols; j++)
 					field[k][j] = field[k+1][j];
-					for(j=0; j < cols; j++)
+					for(j = 0; j < cols; j++)
 						field[rows - 1][j] = false; //weird
 		}//if
 	}//for
 	
 	/* Previous version:
 	//Traverse all rows:
-	for(int i=0; i < rows; i++){
+	for(int i = 0; i < rows; i++){
 		count = 0;
 		//Traverse all columns of each row:
-		for (int j=0; j < cols; j++){
+		for (int j = 0; j < cols; j++){
 			//If location is occupied increment count:
 			if (field[i][j])
 				count++;
@@ -119,14 +119,14 @@ int Board::clearLines(){
 		// If whole row was occupied we need to clear it and shift top rows down:
 		if (count == cols){
 			//Traverse rows down from current complete row:
-			for (int k=i; k < rows - 1; k++){
+			for (int k = i; k < rows - 1; k++){
 				//Copy all cols:
-				for (int j=0; j < cols; j++){
+				for (int j = 0; j < cols; j++){
 					field[k][j] = field[k + 1][j];
 				}
 			}
 			//Clear top most row:
-			for (int j=0; j < cols; j++){
+			for (int j = 0; j < cols; j++){
 				field[rows - 1][j] = false;
 			}
 			cleared++;
@@ -137,33 +137,30 @@ int Board::clearLines(){
 	return cleared;
 }
 
-// function to print current board on the screen
-void Board::print(){ //adjust
+//Function to print current board on the screen:
+void Board::print(){
 	int i;
 	int j;
 	cout << "Board: " << endl << endl;
-	// start from top row since that is how c++ cout will work
-	for (i = rows - 1; i >= 0; i--)
-	{
-    /*
-		// draw boundary lines
+	//Start from top row since that is how C++ cout will work:
+	for (i = rows - 1; i >= 0; i--){
+    	/*	OLD:
+		//Draw left boundary line:
 		cout << '|';
-		for (int j = 0; j < cols; j++)
-		{
-			// if occupied
+		for (int j = 0; j < cols; j++){
+			//If occupied:
 			if (field[i][j])
 				cout << "X";
 			else
 				cout << " ";
 		}
-		// draw right boundary line
+		//Draw right boundary line:
 		cout << "|";
 		cout << endl;
 	}
 
-	// draw bottom boundary
-	for (int j = 0; j < cols+2; j++)
-	{
+	//Draw bottom boundary line:
+	for (int j = 0; j < cols+2; j++){
 		cout << "-";
 	}
 	cout << endl;
