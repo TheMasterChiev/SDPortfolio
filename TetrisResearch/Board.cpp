@@ -144,7 +144,8 @@ void Board::print(){
 	cout << "Board: " << endl << endl;
 	//Start from top row since that is how C++ cout will work:
 	for (i = rows - 1; i >= 0; i--){
-    	/*	OLD:
+    	
+	/*	OLD:
 		//Draw left boundary line:
 		cout << '|';
 		for (int j = 0; j < cols; j++){
@@ -158,28 +159,28 @@ void Board::print(){
 		cout << "|";
 		cout << endl;
 	}
-
 	//Draw bottom boundary line:
 	for (int j = 0; j < cols+2; j++){
 		cout << "-";
 	}
 	cout << endl;
-	cout << endl;*/
-	if(i < rows-3)
-      cout << "|";
-    else
-      cout << " ";
-    for(j=0; j < cols; j++){
-      if(field[i][j])
-        cout << "X";
-      else
-	      cout << " ";
-    }
-    if(i < rows-3)
-      cout << "|" << endl;
-    else
-      cout << endl;
-  }//for
+	cout << endl;		*/
+		
+		if(i < rows-3)
+			cout << "|";
+		else
+      			cout << " ";
+		for(j=0; j < cols; j++){
+	      		if(field[i][j])
+				cout << "X";
+	      		else
+	      			cout << " ";
+    		}
+		if(i < rows-3)
+			cout << "|" << endl;
+		else
+			cout << endl;
+	}//for
   for(j=0; j<cols+2; j++)
     cout << "-";
   cout << endl;
