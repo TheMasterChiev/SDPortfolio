@@ -413,9 +413,9 @@ void Board::get_info(PieceName piece, int & orient, int & pos, int move){
 	}//switch
 }
 
-// function generates a vector of all possible moves for every piece that exists
-vector<Board> Board::list_all_moves()
-{
+
+//Function generates a vector of all possible moves for every piece that exists:
+vector<Board> Board::list_all_moves(){
 
 	vector<Board> ret;
 	PieceName piece;
@@ -423,8 +423,7 @@ vector<Board> Board::list_all_moves()
 	int pos = 0;
 	int orient = 0;
 
-	for (int i = 0; i < NUM_PIECES; i++)
-	{
+	for (int i = 0; i < NUM_PIECES; i++){
 		piece = PieceName(i);
 		// get all moves for current piece
 		moves = possible_moves(piece);
@@ -445,6 +444,7 @@ vector<Board> Board::list_all_moves()
 
 	return ret;
 }
+
 
 // function generates a vector of all possible moves for the given piece
 vector<Board> Board::list_all_moves_with(PieceName piece)
