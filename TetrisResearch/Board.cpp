@@ -181,13 +181,13 @@ void Board::print(){
 		else
 			cout << endl;
 	}//for
-  for(j=0; j<cols+2; j++)
-    cout << "-";
-  cout << endl;
-  cout << " ";
-  for(j=0; j<cols; j++)
-    cout << j % 10;
-  cout << endl;
+  	for(j=0; j<cols+2; j++)
+    		cout << "-";
+	cout << endl;
+	cout << " ";
+	for(j=0; j<cols; j++)
+		cout << j % 10;
+	cout << endl;
 }
 
 
