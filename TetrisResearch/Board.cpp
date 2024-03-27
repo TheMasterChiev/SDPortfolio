@@ -33,6 +33,7 @@ Board::Board(int rows, int cols){
 	}
 }
 
+
 // default constructor
 Board::Board(){
 	//Set variables:
@@ -47,6 +48,7 @@ Board::Board(){
 	this->lastOrient = 0;
 }
 
+
 //How many empties has Row <numberrow>?
 int Board::vacantblocks(int row){
 	int i;
@@ -56,6 +58,7 @@ int Board::vacantblocks(int row){
 			amount++;
 	return amount;
 }
+
 
 //Gives number of empties in highest Non-Empty Row and copies
 // this Row into therow; corresponding index being the row nr.
@@ -77,6 +80,7 @@ void Board::check_top_row(bool row[MAX_width], int & which_row, int & emptyblock
     		}
   	}
 }
+
 
 //Function to clear complete field Tetris lines:
 int Board::clearLines(){
@@ -136,6 +140,7 @@ int Board::clearLines(){
 	//Return number of rows cleared:
 	return cleared;
 }
+
 
 //Function to print current board on the screen:
 void Board::print(){
@@ -328,7 +333,8 @@ void Board::letItFall(PieceName piece, int orient, int pos){
 		field[y[i]][x[i]] = true;
 }
 
-// function to generate number of possible moves
+
+//Function to generate number of possible moves:
 int Board::possible_moves(PieceName piece){
 	int globalwidth = cols;
 	if (piece == O){
@@ -342,68 +348,68 @@ int Board::possible_moves(PieceName piece){
 	}
 }
 
-// compute orientation and position for move the move from piece
+
+//Compute orientation and position for the move from piece:
 void Board::get_info(PieceName piece, int & orient, int & pos, int move){
 	int globalwidth = cols;
 	orient = 0;
 	pos = move;
 	switch (piece){
-	case Z:  if (move > globalwidth - 3){
-				 orient = 1;
-				 pos = move - (globalwidth - 2);
-	}//if
-			 break;
-	case S:  if (move > globalwidth - 3){
-				 orient = 1;
-				 pos = move - (globalwidth - 2);
-	}//if
-			 break;
-	case I:  if (move > globalwidth - 4){
-				 orient = 1;
-				 pos = move - (globalwidth - 3);
-	}//if
-			 break;
-	case O:  break;
-		//case B:	 break;
-	case T:  if (move > 3 * globalwidth - 6){
-				 orient = 3;
-				 pos = move - (3 * globalwidth - 5);
-	}//if
-			 else if (move > 2 * globalwidth - 4){
-				 orient = 2;
-				 pos = move - (2 * globalwidth - 3);
-			 }//if
-			 else if (move > globalwidth - 3){
-				 orient = 1;
-				 pos = move - (globalwidth - 2);
-			 }//if
-			 break;
-	case J:  if (move > 3 * globalwidth - 6){
-				 orient = 3;
-				 pos = move - (3 * globalwidth - 5);
-	}//if
-			 else if (move > 2 * globalwidth - 4){
-				 orient = 2;
-				 pos = move - (2 * globalwidth - 3);
-			 }//if
-			 else if (move > globalwidth - 3){
-				 orient = 1;
-				 pos = move - (globalwidth - 2);
-			 }//if
-			 break;
-	case L:  if (move > 3 * globalwidth - 6){
-				 orient = 3;
-				 pos = move - (3 * globalwidth - 5);
-	}//if
-			 else if (move > 2 * globalwidth - 4){
-				 orient = 2;
-				 pos = move - (2 * globalwidth - 3);
-			 }//if
-			 else if (move > globalwidth - 3){
-				 orient = 1;
-				 pos = move - (globalwidth - 2);
-			 }//if
-			 break;
+		case Z: if (move > globalwidth - 3){
+				orient = 1;
+				pos = move - (globalwidth - 2);
+			}//if
+			break;
+		case S: if (move > globalwidth - 3){
+				orient = 1;
+				pos = move - (globalwidth - 2);
+			}//if
+			break;
+		case I: if (move > globalwidth - 4){
+				orient = 1;
+				pos = move - (globalwidth - 3);
+			}//if
+			break;
+		case O: break;
+		case T: if (move > 3 * globalwidth - 6){
+				orient = 3;
+				pos = move - (3 * globalwidth - 5);
+			}//if
+			else if (move > 2 * globalwidth - 4){
+				orient = 2;
+				pos = move - (2 * globalwidth - 3);
+			}//if
+			else if (move > globalwidth - 3){
+				orient = 1;
+				pos = move - (globalwidth - 2);
+			}//if
+			break;
+		case J: if (move > 3 * globalwidth - 6){
+				orient = 3;
+				pos = move - (3 * globalwidth - 5);
+			}//if
+			else if (move > 2 * globalwidth - 4){
+				orient = 2;
+				pos = move - (2 * globalwidth - 3);
+			}//elseif
+			else if (move > globalwidth - 3){
+				orient = 1;
+				pos = move - (globalwidth - 2);
+			}//elseif
+			break;
+		case L: if (move > 3 * globalwidth - 6){
+				orient = 3;
+				pos = move - (3 * globalwidth - 5);
+			}//if
+			else if (move > 2 * globalwidth - 4){
+				orient = 2;
+				pos = move - (2 * globalwidth - 3);
+			}//if
+			else if (move > globalwidth - 3){
+				orient = 1;
+				pos = move - (globalwidth - 2);
+			}//if
+			break;
 	}//switch
 }
 
