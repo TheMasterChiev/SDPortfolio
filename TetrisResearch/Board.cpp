@@ -191,9 +191,9 @@ void Board::print(){
 }
 
 
-// let piece fall in position and orientation given
-// assume it still fits in top rows
-void Board::letItFall(PieceName piece, int orient, int pos) {
+//Function to let piece fall in position and orientation given
+// assuming it still fits in top rows of the board.:
+void Board::letItFall(PieceName piece, int orient, int pos){
 	int x[4] = { 0 };
 	int y[4] = { 0 };
 	int i;
@@ -202,121 +202,120 @@ void Board::letItFall(PieceName piece, int orient, int pos) {
 	int globalwidth = cols;
 
 	pieceCount++;
-	switch (piece) {
-	case O:  x[0] = pos; y[0] = globalheight - 2;
-		x[1] = pos; y[1] = globalheight - 1;
-		x[2] = pos + 1; y[2] = globalheight - 2;
-		x[3] = pos + 1; y[3] = globalheight - 1;
-		break;
-	case J:  switch (orient) {
-	case 0: x[0] = pos + 2; y[0] = globalheight - 2;
-		x[1] = pos + 2; y[1] = globalheight - 1;
-		x[2] = pos + 1; y[2] = globalheight - 1;
-		x[3] = pos; y[3] = globalheight - 1;
-		break;
-	case 1: x[0] = pos; y[0] = globalheight - 3;
-		x[1] = pos; y[1] = globalheight - 2;
-		x[2] = pos; y[2] = globalheight - 1;
-		x[3] = pos + 1; y[3] = globalheight - 1;
-		break;
-	case 2: x[0] = pos; y[0] = globalheight - 2;
-		x[1] = pos + 1; y[1] = globalheight - 2;
-		x[2] = pos + 2; y[2] = globalheight - 2;
-		x[3] = pos; y[3] = globalheight - 1;
-		break;
-	case 3: x[0] = pos; y[0] = globalheight - 3;
-		x[1] = pos + 1; y[1] = globalheight - 1;
-		x[2] = pos + 1; y[2] = globalheight - 2;
-		x[3] = pos + 1; y[3] = globalheight - 3;
-		break;
-	}//switch
-			 break;
-	case L:  switch (orient) {
-	case 0: x[0] = pos; y[0] = globalheight - 2;
-		x[1] = pos + 2; y[1] = globalheight - 1;
-		x[2] = pos + 1; y[2] = globalheight - 1;
-		x[3] = pos; y[3] = globalheight - 1;
-		break;
-	case 1: x[0] = pos; y[0] = globalheight - 3;
-		x[1] = pos; y[1] = globalheight - 2;
-		x[2] = pos; y[2] = globalheight - 1;
-		x[3] = pos + 1; y[3] = globalheight - 3;
-		break;
-	case 2: x[0] = pos; y[0] = globalheight - 2;
-		x[1] = pos + 1; y[1] = globalheight - 2;
-		x[2] = pos + 2; y[2] = globalheight - 2;
-		x[3] = pos + 2; y[3] = globalheight - 1;
-		break;
-	case 3: x[0] = pos + 1; y[0] = globalheight - 3;
-		x[1] = pos + 1; y[1] = globalheight - 1;
-		x[2] = pos + 1; y[2] = globalheight - 2;
-		x[3] = pos; y[3] = globalheight - 1;
-		break;
-	}//switch
-			 break;
-	case Z:  switch (orient) {
-	case 0: x[0] = pos + 1; y[0] = globalheight - 2;
-		x[1] = pos + 1; y[1] = globalheight - 1;
-		x[2] = pos + 2; y[2] = globalheight - 2;
-		x[3] = pos; y[3] = globalheight - 1;
-
-		break;
-	case 1: x[0] = pos; y[0] = globalheight - 3;
-		x[1] = pos; y[1] = globalheight - 2;
-		x[2] = pos + 1; y[2] = globalheight - 1;
-		x[3] = pos + 1; y[3] = globalheight - 2;
-		break;
-	}//switch
-			 break;
-	case S:  switch (orient) {
-	case 0: x[0] = pos + 1; y[0] = globalheight - 2;
-		x[1] = pos + 1; y[1] = globalheight - 1;
-		x[2] = pos + 2; y[2] = globalheight - 1;
-		x[3] = pos; y[3] = globalheight - 2;
-		break;
-	case 1: x[0] = pos + 1; y[0] = globalheight - 3;
-		x[1] = pos; y[1] = globalheight - 2;
-		x[2] = pos + 1; y[2] = globalheight - 2;
-		x[3] = pos; y[3] = globalheight - 1;
-		break;
-	}//switch
-			 break;
-	case I: switch (orient) {
-	case 0: x[0] = pos; y[0] = globalheight - 1;
-		x[1] = pos + 1; y[1] = globalheight - 1;
-		x[2] = pos + 2; y[2] = globalheight - 1;
-		x[3] = pos + 3; y[3] = globalheight - 1;
-		break;
-	case 1: x[0] = pos; y[0] = globalheight - 4;
-		x[1] = pos; y[1] = globalheight - 3;
-		x[2] = pos; y[2] = globalheight - 2;
-		x[3] = pos; y[3] = globalheight - 1;
-		break;
-	}//switch
+	switch (piece){
+		case O: x[0] = pos; y[0] = globalheight - 2;
+			x[1] = pos; y[1] = globalheight - 1;
+			x[2] = pos + 1; y[2] = globalheight - 2;
+			x[3] = pos + 1; y[3] = globalheight - 1;
 			break;
-	case T: switch (orient) {
-	case 0: x[0] = pos + 1; y[0] = globalheight - 2;
-		x[1] = pos; y[1] = globalheight - 1;
-		x[2] = pos + 1; y[2] = globalheight - 1;
-		x[3] = pos + 2; y[3] = globalheight - 1;
+		case J: switch (orient){
+				case 0: x[0] = pos + 2; y[0] = globalheight - 2;
+					x[1] = pos + 2; y[1] = globalheight - 1;
+					x[2] = pos + 1; y[2] = globalheight - 1;
+					x[3] = pos; y[3] = globalheight - 1;
+					break;
+				case 1: x[0] = pos; y[0] = globalheight - 3;
+					x[1] = pos; y[1] = globalheight - 2;
+					x[2] = pos; y[2] = globalheight - 1;
+					x[3] = pos + 1; y[3] = globalheight - 1;
+					break;
+				case 2: x[0] = pos; y[0] = globalheight - 2;
+					x[1] = pos + 1; y[1] = globalheight - 2;
+					x[2] = pos + 2; y[2] = globalheight - 2;
+					x[3] = pos; y[3] = globalheight - 1;
+					break;
+				case 3: x[0] = pos; y[0] = globalheight - 3;
+					x[1] = pos + 1; y[1] = globalheight - 1;
+					x[2] = pos + 1; y[2] = globalheight - 2;
+					x[3] = pos + 1; y[3] = globalheight - 3;
+					break;
+		}//switch
 		break;
-	case 1: x[0] = pos; y[0] = globalheight - 3;
-		x[1] = pos; y[1] = globalheight - 2;
-		x[2] = pos; y[2] = globalheight - 1;
-		x[3] = pos + 1; y[3] = globalheight - 2;
+		case L: switch (orient){
+				case 0: x[0] = pos; y[0] = globalheight - 2;
+					x[1] = pos + 2; y[1] = globalheight - 1;
+					x[2] = pos + 1; y[2] = globalheight - 1;
+					x[3] = pos; y[3] = globalheight - 1;
+					break;
+				case 1: x[0] = pos; y[0] = globalheight - 3;
+					x[1] = pos; y[1] = globalheight - 2;
+					x[2] = pos; y[2] = globalheight - 1;
+					x[3] = pos + 1; y[3] = globalheight - 3;
+					break;
+				case 2: x[0] = pos; y[0] = globalheight - 2;
+					x[1] = pos + 1; y[1] = globalheight - 2;
+					x[2] = pos + 2; y[2] = globalheight - 2;
+					x[3] = pos + 2; y[3] = globalheight - 1;
+					break;
+				case 3: x[0] = pos + 1; y[0] = globalheight - 3;
+					x[1] = pos + 1; y[1] = globalheight - 1;
+					x[2] = pos + 1; y[2] = globalheight - 2;
+					x[3] = pos; y[3] = globalheight - 1;
+					break;
+		}//switch
 		break;
-	case 2: x[0] = pos; y[0] = globalheight - 2;
-		x[1] = pos + 1; y[1] = globalheight - 2;
-		x[2] = pos + 2; y[2] = globalheight - 2;
-		x[3] = pos + 1; y[3] = globalheight - 1;
+		case Z: switch (orient){
+				case 0: x[0] = pos + 1; y[0] = globalheight - 2;
+					x[1] = pos + 1; y[1] = globalheight - 1;
+					x[2] = pos + 2; y[2] = globalheight - 2;
+					x[3] = pos; y[3] = globalheight - 1;
+					break;
+				case 1: x[0] = pos; y[0] = globalheight - 3;
+					x[1] = pos; y[1] = globalheight - 2;
+					x[2] = pos + 1; y[2] = globalheight - 1;
+					x[3] = pos + 1; y[3] = globalheight - 2;
+					break;
+		}//switch
 		break;
-	case 3: x[0] = pos + 1; y[0] = globalheight - 3;
-		x[1] = pos + 1; y[1] = globalheight - 2;
-		x[2] = pos + 1; y[2] = globalheight - 1;
-		x[3] = pos; y[3] = globalheight - 2;
+		case S: switch (orient){
+				case 0: x[0] = pos + 1; y[0] = globalheight - 2;
+					x[1] = pos + 1; y[1] = globalheight - 1;
+					x[2] = pos + 2; y[2] = globalheight - 1;
+					x[3] = pos; y[3] = globalheight - 2;
+					break;
+				case 1: x[0] = pos + 1; y[0] = globalheight - 3;
+					x[1] = pos; y[1] = globalheight - 2;
+					x[2] = pos + 1; y[2] = globalheight - 2;
+					x[3] = pos; y[3] = globalheight - 1;
+					break;
+		}//switch
 		break;
-	}//switch
-			break;
+		case I: switch (orient){
+				case 0: x[0] = pos; y[0] = globalheight - 1;
+					x[1] = pos + 1; y[1] = globalheight - 1;
+					x[2] = pos + 2; y[2] = globalheight - 1;
+					x[3] = pos + 3; y[3] = globalheight - 1;
+					break;
+				case 1: x[0] = pos; y[0] = globalheight - 4;
+					x[1] = pos; y[1] = globalheight - 3;
+					x[2] = pos; y[2] = globalheight - 2;
+					x[3] = pos; y[3] = globalheight - 1;
+					break;
+		}//switch
+		break;
+		case T: switch (orient){
+				case 0: x[0] = pos + 1; y[0] = globalheight - 2;
+					x[1] = pos; y[1] = globalheight - 1;
+					x[2] = pos + 1; y[2] = globalheight - 1;
+					x[3] = pos + 2; y[3] = globalheight - 1;
+					break;
+				case 1: x[0] = pos; y[0] = globalheight - 3;
+					x[1] = pos; y[1] = globalheight - 2;
+					x[2] = pos; y[2] = globalheight - 1;
+					x[3] = pos + 1; y[3] = globalheight - 2;
+					break;
+				case 2: x[0] = pos; y[0] = globalheight - 2;
+					x[1] = pos + 1; y[1] = globalheight - 2;
+					x[2] = pos + 2; y[2] = globalheight - 2;
+					x[3] = pos + 1; y[3] = globalheight - 1;
+					break;
+				case 3: x[0] = pos + 1; y[0] = globalheight - 3;
+					x[1] = pos + 1; y[1] = globalheight - 2;
+					x[2] = pos + 1; y[2] = globalheight - 1;
+					x[3] = pos; y[3] = globalheight - 2;
+					break;
+		}//switch
+		break;
 	}//switch
 	while (y[0] > 0 && !field[y[0] - 1][x[0]]
 		&& !field[y[1] - 1][x[1]] && !field[y[2] - 1][x[2]]
@@ -324,7 +323,8 @@ void Board::letItFall(PieceName piece, int orient, int pos) {
 		for (i = 0; i < 4; i++)
 			y[i]--;
 	}
-	for (i = 0; i<4; i++)//zorgt dat tetromino true is
+	//Zorgt dat tetromino true is:
+	for (i = 0; i<4; i++)
 		field[y[i]][x[i]] = true;
 }
 
