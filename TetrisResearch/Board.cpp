@@ -594,7 +594,7 @@ void Board::alphaBetaPlay(int depth, int modus, int holdings){
 //Zorg dat Mode en Hold het doen 
 void Board::alphaBetaPlay_two(int depth, int modus, int holdings){
 	PieceName piece;
-	//Laten we beginnen met een random gevulde Hold.
+	//Laten we beginnen met een random gevulde Hold.:
 	temp_hold = PieceName(rand() % NUM_PIECES);
 	wissel = 0;
 	int pos = 0;
@@ -602,9 +602,9 @@ void Board::alphaBetaPlay_two(int depth, int modus, int holdings){
 	int i = 0;
 	int cleared = 0;
 	int last_turn;
-  //Debugging purposes:
-  //cout << "SWITCH: " << wissel << endl;
-	// keep playing moves while game is not over
+  	//Debugging purposes:
+  	//cout << "SWITCH: " << wissel << endl;
+	//Keep playing moves while game is not over:
 	while (GameOver(1, cleared) == false){
 		Board result;
 
@@ -613,20 +613,20 @@ void Board::alphaBetaPlay_two(int depth, int modus, int holdings){
 		cout << "Tetromino in HOLD: " << temp_hold << endl;
 		cout << "Random Piece: " << endl;
 		piece = PieceName(rand() % NUM_PIECES);
-		// check which player's move it is and evaluate accordingly
+		//Check which player's move it is and evaluate accordingly:
 		if (turn == P1)
 		  //Je moet in deze functies de Hold uitproberen.
 			result = ABMinMax(*this, depth, piece, temp_hold, wissel, modus, holdings);
 		else
 			result = ABMinMax_two(*this, depth, piece, temp_hold, wissel, modus, holdings);
 			
-		//Checks if a Tetromino in the Hold is to be switched with the current piece
+		//Checks if a Tetromino in the Hold is to be switched with the current piece:
 		cout << "WISSEL!!!!: " << wissel << endl;
 		*this = result;
 		/*If 'wissel' is > 0 then a Hold move evaluated better and thus needs to be
-    switched with the current piece:*/
+    		switched with the current piece:*/
 		if(wissel > 0){ //Zo ja? Wissel.
-		  //Debugging purposes:
+		  	//Debugging purposes:
 			cout << "HOLD TETROMINO IS GEBRUIKT!" << endl;
 			printPiece(temp_hold, lastOrient, lastPos);	
 			printPiece(piece, lastOrient, lastPos);	
@@ -637,7 +637,7 @@ void Board::alphaBetaPlay_two(int depth, int modus, int holdings){
 			printPiece(piece, lastOrient, lastPos);
 		}
 
-		// check if any rows need to be cleared.
+		//Check if any rows need to be cleared.:
 		cleared = clearLines();
 		cout << "Optimized Result: " << endl;
 		print();
@@ -652,8 +652,8 @@ void Board::alphaBetaPlay_two(int depth, int modus, int holdings){
 		turn = (turn + 1) % 2;
 		i++;
 		for(int i = 0; i < n; i++){
-      wissel_array[i] = false;
-    }
+      			wissel_array[i] = false;
+    		}
 		wissel = 0;
 		//system("pause");
 	}
@@ -665,8 +665,8 @@ void Board::alphaBetaPlay_two(int depth, int modus, int holdings){
 	//Verander als je de parameters voor evaluate en gameover niet meer handmatig hoeft te doen.
 	//Je kan dat (turn + 1) % 2 wel mooier doen.
 	cout << "Last turn was Player #: " << last_turn << endl;
-	
 }
+
 
 // function to play a game  of tetris using alphabeta approach 1-player
 void Board::play_two(int p1, int p2, int modus, int holdings)
