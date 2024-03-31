@@ -425,59 +425,55 @@ vector<Board> Board::list_all_moves(){
 
 	for (int i = 0; i < NUM_PIECES; i++){
 		piece = PieceName(i);
-		// get all moves for current piece
+		//Get all moves for current piece:
 		moves = possible_moves(piece);
 
-		// get all orientation and position for current piece
-		for (int j = 0; j < moves; j++)
-		{
-			// create board and have it play the current move
+		//Get all Orientation and Position for current piece:
+		for (int j = 0; j < moves; j++){
+			//Copy current Board and have it play the current move:
 			Board b(*this);
+			//Play the jth move:
 			get_info(piece, orient, pos, j);
 			b.lastOrient = orient;
 			b.lastPos = pos;
 			b.letItFall(piece, orient, pos);
-			// push it in the vector of all possible moves
+			//Push it in the vector of all possible moves:
 			ret.push_back(b);
 		}
 	}
-
 	return ret;
 }
 
 
-// function generates a vector of all possible moves for the given piece
-vector<Board> Board::list_all_moves_with(PieceName piece)
-{
+//Function generates a vector of all possible moves for the given piece:
+vector<Board> Board::list_all_moves_with(PieceName piece){
 
 	vector<Board> ret;
 	int moves = 0;
 	int pos = 0;
 	int orient = 0;
 
-	// get the number of possible moves for the given piece
+	//Get the number of possible moves for the given piece:
 	moves = possible_moves(piece);
-	// play all moves 1 by 1 and add to vector
-	for (int j = 0; j < moves; j++)
-	{
-		// copy the current board
+	//Play all moves 1 by 1 and add to vector:
+	for (int j = 0; j < moves; j++){
+		//Copy the current board:
 		Board b(*this);
-		// play the jth move
+		//Play the jth move:
 		get_info(piece, orient, pos, j);
 		b.lastOrient = orient;
 		b.lastPos = pos;
 		b.letItFall(piece, orient, pos);
-		// push it in the vector of all possible moves
+		//Push it in the vector of all possible moves:
 		ret.push_back(b);
 	}
-
 	return ret;
 }
 
-// function generates a vector of all possible moves for the given pieces
-//This is an added function.
-vector<Board> Board::list_all_moves_with_pieces(PieceName piece, PieceName hold)
-{
+
+//Function generates a vector of all possible moves for the given pieces:
+//Includes the piece in Hold-function if present.
+vector<Board> Board::list_all_moves_with_pieces(PieceName piece, PieceName hold){
 
 	vector<Board> ret;
 	int moves = 0;
@@ -487,66 +483,65 @@ vector<Board> Board::list_all_moves_with_pieces(PieceName piece, PieceName hold)
 	int number;
 	int j;
 
-	// get the number of possible moves for the given piece
+	//Get the number of possible moves for the given piece:
 	moves = possible_moves(piece);
 	hold_moves = possible_moves(hold);
-	number = moves + hold_moves; //For Boolean Array
-	// play all moves 1 by 1 and add to vector
-	for (j = 0; j < moves; j++)
-	{
-		// copy the current board
+	//For Boolean Array: (Unused. Maybe future work.)
+	//number = moves + hold_moves;
+	
+	//Play all moves 1 by 1 and add to vector:
+	for (j = 0; j < moves; j++){
+		//Copy the current board:
 		Board b(*this);
-		// play the jth move
+		//Play the jth move:
 		get_info(piece, orient, pos, j);
 		b.lastOrient = orient;
 		b.lastPos = pos;
 		b.letItFall(piece, orient, pos);
 		wissel_array[j] = false;
-		// push it in the vector of all possible moves
+		//Push it in the vector of all possible moves:
 		ret.push_back(b);
 	}
 	
-	for (int k = 0; k < hold_moves; k++)
-	{
-    j++;
-		// copy the current board
+	for (int k = 0; k < hold_moves; k++){
+    		j++;
+		//Copy the current board:
 		Board b(*this);
-		// play the jth move
+		//Play the jth move:
 		get_info(hold, orient, pos, k);
 		b.lastOrient = orient;
 		b.lastPos = pos;
 		b.letItFall(hold, orient, pos);
 		wissel_array[j] = true;
-		// push it in the vector of all possible moves
+		//Push it in the vector of all possible moves:
 		ret.push_back(b);
 	}
-
 	return ret;
 }
 
-// function to play a game  of tetris using random moves
-void Board::randomMoves()
-{
+
+//Function to play a game of Tetris using random moves:
+void Board::randomMoves(){
 	PieceName piece;
 	int pos = 0;
 	int orient = 0;
 	int i = 0;
 	int cleared = 0;
 
-	// keep playing moves while game is not over
-	while (GameOver(1, cleared) == false)
-	{
+	//Keep playing moves while game is not over:
+	while (GameOver(1, cleared) == false){
 		//cout << "---------------------------------------------" << endl;
 		//cout << "Turn #" << i << endl;
 		//cout << "Random Piece: " << endl;
-		// initialize random piece
+		
+		//Initialize random piece:
 		piece = PieceName(rand() % NUM_PIECES);
 		int move = rand() % possible_moves(piece);
 		get_info(piece, orient, pos, move);
-		// print the piece that was randomized with its orientation and position
+		//Print the piece that was randomized with its orientation and position:
 		//printPiece(piece, orient, pos);
 		letItFall(piece, orient, pos);
-		// check if any rows need to be cleared.
+		//Check if any rows need to be cleared.:
 		cleared = clearLines();
 		//cout << "Random Result: " << endl;
 		//print();
@@ -561,28 +556,26 @@ void Board::randomMoves()
 	//cout << "**********" << endl;
 }
 
-// function to play a game  of tetris using alphabeta approach 1-player
+//Function to play a game of Tetris using AlphaBeta approach 1-player:
 //Zorg dat Mode en Hold het doen voor Singleplayer
-void Board::alphaBetaPlay(int depth, int modus, int holdings)
-{
+void Board::alphaBetaPlay(int depth, int modus, int holdings){
 	PieceName piece;
 	int pos = 0;
 	int orient = 0;
 	int i = 0;
 	int cleared = 0;
 
-	// keep playing moves while game is not over
-	while (GameOver(1, cleared) == false)
-	{
+	//Keep playing moves while game is not over:
+	while (GameOver(1, cleared) == false){
 		cout << "---------------------------------------------" << endl;
 		cout << "Turn #" << i << endl;
 		cout << "Random Piece: " << endl;
 		piece = PieceName(rand() % NUM_PIECES);
 		Board result = ABMinMax(*this, depth, piece, temp_hold, wissel, modus, holdings);
 		*this = result;
-		// print the piece that with its orientation and position which came out to be best
+		//Print the piece that with its Orientation and Position came out to be best:
 		printPiece(piece, lastOrient, lastPos);
-		// check if any rows need to be cleared.
+		//Check if any rows need to be cleared.:
 		cleared = clearLines();
 		cout << "Optimized Result: " << endl;
 		print();
@@ -597,10 +590,9 @@ void Board::alphaBetaPlay(int depth, int modus, int holdings)
 	cout << "**********" << endl;
 }
 
-// function to play a game  of tetris using alphabeta approach 1-player
+//Function to play a game of Tetris using AlphaBeta approach 2-player:
 //Zorg dat Mode en Hold het doen 
-void Board::alphaBetaPlay_two(int depth, int modus, int holdings)
-{
+void Board::alphaBetaPlay_two(int depth, int modus, int holdings){
 	PieceName piece;
 	//Laten we beginnen met een random gevulde Hold.
 	temp_hold = PieceName(rand() % NUM_PIECES);
@@ -613,8 +605,7 @@ void Board::alphaBetaPlay_two(int depth, int modus, int holdings)
   //Debugging purposes:
   //cout << "SWITCH: " << wissel << endl;
 	// keep playing moves while game is not over
-	while (GameOver(1, cleared) == false)
-	{
+	while (GameOver(1, cleared) == false){
 		Board result;
 
 		cout << "---------------------------------------------" << endl;
