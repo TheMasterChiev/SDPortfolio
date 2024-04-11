@@ -67,7 +67,7 @@ dataset::dataset(string file){
 	int j;
 	int p;
 	int q;
-	cout << "Hallo?" << endl;
+	//cout << "Hallo?" << endl;
 	//Counter coordinates:
 	double ULLong = 5.8971694444444;
 	double ULLat = 51.982016666667;
@@ -206,7 +206,7 @@ dataset::dataset(string file){
 
 
 int main () {
-	cout << "Hallo?" << endl;
+	//cout << "Hallo?" << endl;
 	dataset banaan("test1.csv");
 		
 	
