@@ -1,6 +1,6 @@
-%files = dir('/vol/home/Documents/IAM/w8t1t2 mutant day 7/*.tif');
-%files = dir('D:\Matlab\IAM\w8t1t2 mutant day 7\*.tif');
-files = dir('C:\Users\Documents\IAM\w8t1t2 mutant day 7\*.tif');
+%files = dir('/vol/home/Documents/w8t1t2 mutant day 7/*.tif');
+%files = dir('D:\Matlab\w8t1t2 mutant day 7\*.tif');
+files = dir('C:\Users\Documents\w8t1t2 mutant day 7\*.tif');
 framework = [];
 row = [];
 totalsize = [];
@@ -20,9 +20,9 @@ totalstd = [];
 
 for i = 1:77
     files(i).name;
-    %this_image = readim(['/vol/home/Documents/IAM/w8t1t2 mutant day 7/' files(i).name]);
-    %this_image = readim(['D:\Matlab\IAM\w8t1t2 mutant day 7\' files(i).name]);
-    this_image = readim(['C:\Users\Documents\IAM\w8t1t2 mutant day 7\' files(i).name]);
+    %this_image = readim(['/vol/home/Documents/w8t1t2 mutant day 7/' files(i).name]);
+    %this_image = readim(['D:\Matlab\w8t1t2 mutant day 7\' files(i).name]);
+    this_image = readim(['C:\Users\Documents\w8t1t2 mutant day 7\' files(i).name]);
     %Smooth first
     %blur = gaussf(this_image, 1, 'best');
     
@@ -66,9 +66,9 @@ for i = 1:77
     last_image = test3 * blur;
     
     %end_banaan = ero_banaan * blur;
-    %writeim(test3,['/vol/home/s1298062/Documents/IAM/Fruitsalade/new' files(i).name],'TIFF',0,[])
-    %writeim(test3,['D:\Matlab\IAM\WindowsImagery\new' files(i).name],'TIFF',0,[]);
-    writeim(test3,['C:\Users\Documents\IAM\WindowsImagery\new' files(i).name],'TIFF',0,[]);
+    %writeim(test3,['/vol/home/s1298062/Documents/Fruitsalade/new' files(i).name],'TIFF',0,[])
+    %writeim(test3,['D:\Matlab\WindowsImagery\new' files(i).name],'TIFF',0,[]);
+    writeim(test3,['C:\Users\Documents\WindowsImagery\new' files(i).name],'TIFF',0,[]);
     
     zeroimage = t_B * ~t_B;
     
@@ -83,7 +83,7 @@ for i = 1:77
             row = cat(1,row,zeroimage);
             row = cat(1,row,zeroimage);
             framework = cat(2,framework,row);
-            %imwrite(framework,'/vol/home/Documents/IAM/Fruitsalade/newconcat.png');
+            %imwrite(framework,'/vol/home/Documents/Fruitsalade/newconcat.png');
         end
     end
     
