@@ -23,7 +23,7 @@ set.seed(123)
 fviz_nbclust(banaan4, kmeans, nstart = 25,  method = "gap_stat", nboot = 500)+
   labs(subtitle = "Gap statistic method")
 dev.off()
-____________
+#____________
 # Gap statistic
 # nboot = 50 to keep the function speedy. 
 # recommended value: nboot= 500 for your analysis.
