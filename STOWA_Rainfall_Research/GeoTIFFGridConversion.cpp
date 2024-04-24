@@ -1,4 +1,6 @@
 /*
+Number-Letter code of the filename denotes the label of a square
+in the left-most grid in 'Koppeling.png'.
 
 Compile: g++ -O2 33cz1.cpp -o 33cz1
 RUN: ./33cz1
@@ -91,7 +93,7 @@ double LAT[1250][1000]; //GeoTIFF
 
 class dataset{
     public:
-		dataset(string file);	//als parameter een string mee voor bestandsnaam
+	dataset(string file);	//als parameter een string mee voor bestandsnaam
 				
 		
     private:		
@@ -112,14 +114,17 @@ dataset::dataset(string file){
 	int u;
 	int v;
 	
-//GeoTIFF:	
-	//Counter coordinates:
+//GeoTIFF - Corner coordinates:
+	//Upper Left:
 	double ULLong = 5.7525083333333;
 	double ULLat = 52.0949194444445;
+	//Upper Right:
 	double URLong = 5.8254805555556;
 	double URLat = 52.0946722222222;
+	//Lower Left:
 	double LLLong = 5.7520500000000;
 	double LLLat = 52.0387388888889;
+	//Lower Right:
 	double LRLong = 5.8249305555556; 
 	double LRLat = 52.0384916666667;
 	
@@ -148,7 +153,7 @@ dataset::dataset(string file){
 
 ///////////////////////////
 //KNMI:
-	//Counter coordinates:
+	//Corner coordinates:
 	double VULLong = 0.0000000;
 	double VULLat = 49.3620640;
 	double VURLong = 0.0000000;
